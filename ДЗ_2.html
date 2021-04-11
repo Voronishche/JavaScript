@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашнее задание 2</title>
+    <script>
+        // 1. Дан код:
+        /*var a = 1, b = 1, c, d;
+        c = ++a; alert(c);           // 2 - Потому что префиксный инкремент, т.е. сначало прибавление 1, а потом вывод.
+        d = b++; alert(d);           // 1 - Постфиксный инкремент, т.е. сначала вывели 1, а потом прибавили 1.
+        c = (2 + ++a); alert(c);     // 5 - Ранее a=2 и еще раз прибавляем 1 и выводим. Получается 5.
+        d = (2 + b++); alert(d);     // 4 - b так же было = 2, но так как сначала выаодм, а потом прибывляем, то 4.
+        alert(a);                    // 3 - при вычислении с к 2 прибавили 1 и получаем в итоге 3.
+        alert(b);                    // 3 - при вычислении d к 2 прибавили 1 и получаем в итоге 3.*/
+        //      Почему код даёт именно такие результаты?
+
+        // 2. Чему будет равен x в примере ниже?
+        var a = 2;
+        var x = 1 + (a *= 2);
+        alert(x);                   // x = 5*/
+
+        // 3. Объявить две целочисленные переменные a и b и задать им произвольные начальные значения. Затем написать скрипт, который работает 
+        //по следующему принципу:
+        // если a и b положительные, вывести их разность;
+        // если а и b отрицательные, вывести их произведение;
+        // если а и b разных знаков, вывести их сумму; ноль можно считать положительным числом.
+
+        var a = +prompt("Введите значение a");
+        var b = +prompt("Введите значение b");
+
+        if (a >= 0 && b >= 0) {
+            alert("a - b = " + (a - b));
+        } else if (a < 0 && b < 0) {
+            alert("a * b = " + (a * b));
+        } else {
+            alert("a + b = " + (a + b));
+        }
+
+        // 4. Присвоить переменной а значение в промежутке [0..15]. С помощью оператора switch организовать вывод чисел от a до 15.
+        // *Дополнительное задание. Решить с помощью рекурсии.
+
+        var a = +prompt("Введите значение a (от 0 до 15)");
+
+        switch (a) {
+            case "1":
+                console.log("1");
+            case "2":
+                console.log("2");
+            case "3":
+                console.log("3");
+            case "4":
+                console.log("4");
+            case "5":
+                console.log("5");
+            case "6":
+                console.log("6");
+            case "7":
+                console.log("7");
+            case "8":
+                console.log("8");
+            case "9":
+                console.log("9");
+            case "10":
+                console.log("10");
+            case "11":
+                console.log("11");
+            case "12":
+                console.log("12");
+            case "13":
+                console.log("13");
+            case "14":
+                console.log("14");
+            case "15":
+                console.log("15");
+                break;
+            default:
+                console.log("Введено некорректное значение");
+                break;
+        }
+
+        function getNumber(a) {
+            console.log(a);
+            if (a == 15) {
+                return 15;
+            }
+            else if (a < 0 || a > 15) {
+                return console.log("Введено некорректное значение");
+            }
+            else {
+                return getNumber(a + 1);
+            }
+        }
+
+        getNumber(a);
+
+        // 5. Реализовать основные 4 арифметические операции в виде функций с двумя параметрами. Обязательно использовать оператор return.
+
+        function add(a, b) {
+            return alert("Сумма чисел равна " + (a + b));
+        }
+
+        function subt(a, b) {
+            return alert("Разность чисел равна " + (a - b));
+        }
+
+        function div(a, b) {
+            return alert("Частное чисел равно " + (a / b));
+        }
+
+        function multip(a, b) {
+            return alert("Произведение часел равно " + (a * b));
+        }
+
+        var a = +prompt("Введите значение a");
+        var b = +prompt("Введите значение b");
+
+        add(a, b);
+        subt(a, b);
+        div(a, b);
+        multip(a, b);
+
+        /*6. Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1, arg2 – 
+        значения аргументов, operation – строка с названием операции. В зависимости от переданного значения операции выполнить одну 
+        из арифметических операций (использовать функции из пункта 5) и вернуть полученное значение (использовать switch).*/
+        function mathOperation(arg1, arg2, operation) {
+            switch (operation) {
+                case "add":
+                    alert(add(a, b));
+                    break;
+                case "subt":
+                    alert(subt(a, b));
+                    break;
+                case "div":
+                    alert(div(a, b));
+                    break;
+                case "multip":
+                    alert(multip(a, b));
+                    break;
+                default:
+                    alert("Введено некорректное значение");
+                    break;
+            }
+        }
+
+        var operation = prompt("Введите математическую операцию (add - сложение, subt - вычитание, div - деление, multip - умножение)");
+        mathOperation(a, b, operation);
+
+        //Не понимаю почему в конце выводится undefined :(
+
+        // 7. *Сравнить null и 0. Попробуйте объяснить результат.
+
+        null > 0; // false
+        null < 0; // false
+        null == 0; // false
+        //Если null < 0 принимает значение false, то null >= 0 принимает значение true
+        null >= 0; // true
+
+        // 8. *С помощью рекурсии организовать функцию возведения числа в степень. Формат: function power(val, pow), 
+        //где val – заданное число, pow – степень.
+
+        function power(val, pow) {
+            if (val == 0) {
+                return 0;
+            }
+            else if (pow == 0) {
+                return 1;
+            }
+            else if (pow < 0) {
+                return power(1 / val, -pow);
+            }
+            else {
+                return val * power(val, pow - 1);
+            }
+        }
+
+        var a = +prompt("Введите цисло");
+        var b = +prompt("Введите степень");
+        power(a, b);
+        alert(power(a, b));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html
